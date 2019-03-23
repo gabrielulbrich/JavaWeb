@@ -21,12 +21,6 @@ import models.RegisterModel;
 public class Register extends HttpServlet {
 	RegisterModel model = new RegisterModel();
 	
-	private String nome;
-	private String login;
-	private String email;
-	private String senha;
-	private String senha_confirmacao;
-	
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Preprocess request: we actually don't need to do any business stuff, so just display JSP.
@@ -37,17 +31,17 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-    	setNome(request.getParameter("nome"));
-    	setLogin(request.getParameter("login"));
-    	setEmail(request.getParameter("email"));
-    	setSenha(request.getParameter("senha"));
-    	setSenha_confirmacao(request.getParameter("senha_confirmacao"));
+    	model.setNome(request.getParameter("nome"));
+    	model.setLogin(request.getParameter("login"));
+    	model.setEmail(request.getParameter("email"));
+    	model.setSenha(request.getParameter("senha"));
+    	model.setSenha_confirmacao(request.getParameter("senha_confirmacao"));
     	
-    	//model.Salvar();
+    	model.Salvar();
     	
-		if (nome != null &&	senha != null) {
+		if (model.getNome() != null &&	model.getSenha() != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("mensagem", nome+" cadastrado com sucesso!");
+			session.setAttribute("mensagem", model.getNome()+" cadastrado com sucesso!");
 			response.sendRedirect("/WebDev/login");
 		} else {
 			invalidaSessao(request, response);
@@ -64,45 +58,5 @@ public class Register extends HttpServlet {
 		request.setAttribute("mensagem", "Erro ao se cadastrar");
 		request.getRequestDispatcher("views/register.xhtml").forward(request, response);
 	}
-    
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getSenha_confirmacao() {
-		return senha_confirmacao;
-	}
-
-	public void setSenha_confirmacao(String senha_confirmacao) {
-		this.senha_confirmacao = senha_confirmacao;
-	}
-
+  
 }
