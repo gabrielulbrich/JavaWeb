@@ -1,0 +1,1 @@
+java -classpath ../lib/hsqldb.jar org.hsqldb.WebServer -database.0 javadiscos -dbname.0 javadiscos

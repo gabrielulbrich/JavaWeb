@@ -12,21 +12,22 @@
   <div class="container">
     <div class="login">
       <h1>Registro</h1>
-      <form method="post" action="index.html">
+      <form method="post" action="register">
       	<label>Nome:</label>
-        <p:inputText type="text" name="login" value="" placeholder="Username or Email"></p:inputText>
+        <p:inputText id="nome" type="text" name="nome" value=""></p:inputText>
         <label>Nome de usuario:</label>
-        <p:inputText type="text" name="login" value="" placeholder="Username or Email"></p:inputText>
+        <p:inputText id="login" type="text" name="login" value=""></p:inputText>
         <label>E-mail:</label>
-        <p:inputText type="text" name="login" value="" placeholder="Username or Email"></p:inputText>
+        <p:inputText id="email" type="text" name="email" value=""></p:inputText>
         <label>Senha:</label>
-        <p:inputText type="password" name="password" value="" placeholder="Password"></p:inputText>
+        <p:inputText id="senha" type="password" name="senha" value="" placeholder="Senha"></p:inputText>
         <label>Repetir senha:</label>
-        <p:inputText type="password" name="password" value="" placeholder="Password"></p:inputText>
+        <p:inputText id="senha_confirmacao" type="password" name="senha_confirmacao" value="" placeholder="Confirme a senha"></p:inputText>
         
         
-        <p class="submit"><p:inputText type="submit" name="commit" value="Registrar"></p:inputText></p>
+        <p class="submit"><p:inputText type="submit" value="Registrar"></p:inputText></p>
       </form>
+      <p style="color:red">Mensagem: ${mensagem}</p>
     </div>
   </div>
 </h:body>
