@@ -30,16 +30,13 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
     	model.setNome(request.getParameter("nome"));
     	model.setLogin(request.getParameter("login"));
     	model.setEmail(request.getParameter("email"));
     	model.setSenha(request.getParameter("senha"));
     	model.setSenha_confirmacao(request.getParameter("senha_confirmacao"));
     	
-    	model.Salvar();
-    	
-		if (model.getNome() != null &&	model.getSenha() != null) {
+		if (model.Salvar()) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mensagem", model.getNome()+" cadastrado com sucesso!");
 			response.sendRedirect("/WebDev/login");

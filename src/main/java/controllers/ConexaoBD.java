@@ -7,21 +7,24 @@ import javax.swing.JOptionPane;
 
 public class ConexaoBD {
 	
+	public Connection con;
 	public Statement stm;
 	public ResultSet rs;
-	private String caminho = "jdbc:hsqldb:file:banco/biblioteca";
+	private String caminho = "jdbc:hsqldb:file:D:\\lab\\JavaWeb\\WebDev\\banco\\biblioteca";
 	private String usuario = "SA";
 	private String senha = "";
-	public Connection con;
 
 	public void conexao() { //METODO RESPOSAVEL POR REALIZAR CONEXAO COM O BD
-		
+		int result = 0; 
 		try {
 			//System.setProperty("jdbc.Drivers", driver);
+			Class.forName("org.hsqldb.jdbc.JDBCDriver");
 			con = DriverManager.getConnection(caminho, usuario, senha);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, "ERRO: Conexao com o banco falhou:\n"+e.getMessage());
+		}catch(ClassNotFoundException e){
+		    System.out.println("Erro ao carregar o driver JDBC. ");
+		}catch (SQLException e) {
+		    System.out.println("Erro de SQL conexao: "+e);
+		    e.printStackTrace();
 		}
 	}
 	

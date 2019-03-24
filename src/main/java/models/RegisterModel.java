@@ -1,7 +1,10 @@
 package models;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
@@ -21,22 +24,25 @@ public class RegisterModel {
 	ConexaoBD conexao = new ConexaoBD();
 	//Register dados = new Register();
 
-	public void Salvar() {
+	public boolean Salvar() {		
 		conexao.conexao();
-		try {
-			PreparedStatement pst = conexao.con.prepareStatement("INSERT INTO USUARIOS (nome, login, email, senha, senha_confirmacao) VALUES (?,?,?,?,?)");
-			pst.setString(1, getNome());
-			pst.setString(2, getLogin());
-			pst.setString(3, getEmail());
-			pst.setString(4, getSenha());
-			pst.setString(5, getSenha_confirmacao());
+		try {	
+			PreparedStatement pst = conexao.con.prepareStatement("INSERT INTO usuarios (nome, login, email, senha, senha_confirmacao) VALUES (?,?,?,?,?);");
+			pst.setString(1, this.getNome());
+			pst.setString(2, this.getLogin());
+			pst.setString(3, this.getEmail());
+			pst.setString(4, this.getSenha());
+			pst.setString(5, this.getSenha_confirmacao());
 			pst.execute();
-			JOptionPane.showMessageDialog(null, "INSERIDO COM SUCESSO");
+			conexao.desconecta();
+			return true;
+			//JOptionPane.showMessageDialog(null, "INSERIDO COM SUCESSO");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, "ERRO AO INSERIR:\n" + e.getMessage());
+		    System.out.println("Erro de SQL: "+e);
+		    e.printStackTrace();
 		}
 		conexao.desconecta();
+		return false;
 	}
 	
 	public String getNome() {
