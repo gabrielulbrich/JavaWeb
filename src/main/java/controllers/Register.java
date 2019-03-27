@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -29,20 +30,25 @@ public class Register extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    	model.setNome(request.getParameter("nome"));
-    	model.setLogin(request.getParameter("login"));
-    	model.setEmail(request.getParameter("email"));
-    	model.setSenha(request.getParameter("senha"));
-    	model.setSenha_confirmacao(request.getParameter("senha_confirmacao"));
-    	
-		if (model.Salvar()) {
-			HttpSession session = request.getSession();
-			session.setAttribute("mensagem", model.getNome()+" cadastrado com sucesso!");
-			response.sendRedirect("/WebDev/login");
-		} else {
-			invalidaSessao(request, response);
-		}
+    	//verifica confirmação de senha
+    	String senha = request.getParameter("senha");
+    	String senha_confirmacao = request.getParameter("senha_confirmacao");
+    	if(senha.equals(senha_confirmacao)) {		
+        	model.setNome(request.getParameter("nome"));
+        	model.setLogin(request.getParameter("login"));
+        	model.setEmail(request.getParameter("email"));
+        	model.setSenha(request.getParameter("senha"));
+  
+			if (model.Salvar()) {
+				HttpSession session = request.getSession();
+				session.setAttribute("mensagem", model.getNome()+" cadastrado com sucesso!");
+				response.sendRedirect("/WebDev/login");
+			} else {
+				invalidaSessao(request, response);
+			}
+    	}else {
+    		invalidaSessao(request, response);
+    	}
     }
     
 	public static void invalidaSessao(HttpServletRequest 

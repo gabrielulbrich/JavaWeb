@@ -27,12 +27,12 @@ public class RegisterModel {
 	public boolean Salvar() {		
 		conexao.conexao();
 		try {	
-			PreparedStatement pst = conexao.con.prepareStatement("INSERT INTO usuarios (nome, login, email, senha, senha_confirmacao) VALUES (?,?,?,?,?);");
+			PreparedStatement pst = conexao.con.prepareStatement("INSERT INTO usuario (nome, login, email, senha) VALUES (?,?,?,?);");
 			pst.setString(1, this.getNome());
 			pst.setString(2, this.getLogin());
 			pst.setString(3, this.getEmail());
 			pst.setString(4, this.getSenha());
-			pst.setString(5, this.getSenha_confirmacao());
+			//pst.setString(5, this.getSenha_confirmacao());
 			pst.execute();
 			conexao.desconecta();
 			return true;
