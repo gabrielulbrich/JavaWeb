@@ -10,7 +10,7 @@ public class ConexaoBD {
 	public Connection con;
 	public Statement stm;
 	public ResultSet rs;
-	private String caminho = "jdbc:hsqldb:file:/Users/gulbrich/lab/JavaWeb/WebDev/banco/biblioteca";
+	private String caminho = "jdbc:hsqldb:file:C:/workspace/WebDev/banco/biblioteca";
 	private String usuario = "SA";
 	private String senha = "";
 
@@ -30,7 +30,7 @@ public class ConexaoBD {
 	
 	public void desconecta() { //METODO RESPONSAVEL PARA DESCONECTAR DO BANCO
 		try {
-			stm.execute("SHUTDOWN");
+			//stm.execute("SHUTDOWN");
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
