@@ -1,7 +1,10 @@
 package controllers;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -36,8 +39,8 @@ public class Register extends HttpServlet {
     	if(senha.equals(senha_confirmacao)) {		
         	model.setNome(request.getParameter("nome"));
         	model.setLogin(request.getParameter("login"));
-        	model.setEmail(request.getParameter("email"));
-        	model.setSenha(request.getParameter("senha"));
+        	model.setEmail(request.getParameter("email"));   
+        	model.setSenha(this.hashSenha(senha)); //HASH SENHA
   
 			if (model.Salvar()) {
 				HttpSession session = request.getSession();
@@ -49,6 +52,30 @@ public class Register extends HttpServlet {
     	}else {
     		invalidaSessao(request, response);
     	}
+    }
+    
+    public String hashSenha(String senha) { //HASH SENHA
+    	MessageDigest algorithm = null;
+		try {
+			algorithm = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	byte messageDigest[] = null;
+		try {
+			messageDigest = algorithm.digest(senha.getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	StringBuilder hexString = new StringBuilder();
+		for (byte b : messageDigest) {
+    	  hexString.append(String.format("%02X", 0xFF & b));
+    	}
+    	String senhaHash = hexString.toString();
+    	return senhaHash;
     }
     
 	public static void invalidaSessao(HttpServletRequest 
