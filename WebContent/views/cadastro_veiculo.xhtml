@@ -1,8 +1,7 @@
 <section xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://java.sun.com/jsf/core">
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
 	<div>
 		<h3>CADASTRO VEICULO</h3>
 	</div>
@@ -10,8 +9,6 @@
 		<h:form>
 			<p:growl id="msgs" showDetail="true" />
 			<h:panelGrid columns="2" cellpadding="5">
-
-    <p:growl id="msgs" showDetail="true" />
  
     <p:panel header="Select a Location" style="margin-bottom:10px;">
         <h:panelGrid columns="2" cellpadding="5">
@@ -35,21 +32,15 @@
     </p:panel>
 
 				<label>Fabricante:</label>
-				<p:inputText id="Fabricante" type="text" name="login" value=""></p:inputText>
+				<p:inputText id="fabricante" type="text" name="fabricante" value=""></p:inputText>
 				<label>Cor:</label>
-				<p:inputText id="Cor" type="text" name="email" value=""></p:inputText>
+				<p:inputText id="cor" type="text" name="cor" value=""></p:inputText>
 				<label>Placa:</label>
-				<p:inputText id="Placa" type="text" name="email" value=""></p:inputText>
+				<p:inputText id="placa" type="text" name="placa" value=""></p:inputText>
 				<label>Descrição:</label>
-				<p:inputText id="descricao" type="text" name="email" value=""></p:inputText>
+				<p:inputText id="descricao" type="text" name="descricao" value=""></p:inputText>
 				<label>Quantidade:</label>
-				<p:inputText id="quantidade" type="password" name="senha" value=""
-					placeholder="Senha"></p:inputText>
-				<label>Repetir senha:</label>
-				<p:inputText id="senha_confirmacao" type="password"
-					name="senha_confirmacao" value="" placeholder="Confirme a senha"></p:inputText>
-
-
+				<p:inputText id="quantidade" type="text" name="quantidade" value=""></p:inputText>
 				<p class="submit">
 					<p:inputText type="submit" value="Registrar"></p:inputText>
 				</p>
