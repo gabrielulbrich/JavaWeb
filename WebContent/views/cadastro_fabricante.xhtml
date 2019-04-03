@@ -1,0 +1,23 @@
+<section xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h2>CADASTRO FABRICANTE</h2>
+
+	<form action="cadastro-fabricante" method="POST">
+		<div class="ui-g">
+			<div class="ui-g-6">
+				<p:growl id="msgs" showDetail="true" />
+
+				<label>Fabricante:</label>
+				<p:inputText id="fabricante" type="text" name="fabricante" value=""></p:inputText>
+
+				<p class="submit"><p:inputText type="submit" name="commit" value="Cadastrar"></p:inputText></p>
+				
+				<p style="color:red">Mensagem: ${success}</p>
+			</div>
+		</div>
+	</form>
+
+
+</section>
