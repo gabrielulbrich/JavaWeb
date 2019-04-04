@@ -1,0 +1,26 @@
+<section xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h2>CADASTRO MODELO</h2><br/><br/>
+
+	<form action="cadastro-modelo" method="POST">
+
+		<h:panelGrid columns="2" cellpadding="5">
+
+			<label>Modelo:</label>
+			<p:inputText id="modelo" type="text" name="modelo" value=""></p:inputText>
+
+			<p class="submit">
+				<p:inputText type="submit" name="commit" value="Cadastrar"></p:inputText>
+			</p>
+
+			
+		</h:panelGrid>
+		<p style="color: red">Mensagem: ${success}</p>
+	</form>
+
+
+</section>
