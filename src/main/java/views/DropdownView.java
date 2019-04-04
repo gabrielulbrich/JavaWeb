@@ -23,6 +23,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 @ManagedBean
 @ViewScoped
@@ -88,7 +89,8 @@ public class DropdownView implements Serializable {
         return cities;
     }
 
-    public void onCountryChange() {
+    public void onCountryChange(AjaxBehaviorEvent event) {
+    	System.out.println("mudou");
 		if(country !=null && !country.equals(""))
 			cities = data.get(country);
 		else
