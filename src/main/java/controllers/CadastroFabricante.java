@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import models.FabricanteModel;
 
 @WebServlet("/cadastro-fabricante")
-public class CadastroFabricante extends HttpServlet {
-	FabricanteModel fabricante = new FabricanteModel();
+public class CadastroFabricante extends HttpServlet {	
+	FabricanteModel fab = new FabricanteModel();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,8 +27,8 @@ public class CadastroFabricante extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
-        fabricante.setFabricante(request.getParameter("fabricante"));
-        if(fabricante.Cadastro()) {
+        fab.setFabricante(request.getParameter("fabricante"));
+        if(fab.Cadastro()) {
         	session.setAttribute("success", "Fabricante inserido com sucesso");
         	response.sendRedirect("/WebDev/cadastro-fabricante");
         }else {
@@ -36,5 +36,7 @@ public class CadastroFabricante extends HttpServlet {
         	response.sendRedirect("/WebDev/cadastro-fabricante");
         }
     }
+
+
 
 }

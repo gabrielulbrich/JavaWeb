@@ -16,6 +16,7 @@ import models.ModeloModel;
 
 @WebServlet("/cadastro-modelo")
 public class CadastroModelo extends HttpServlet {
+	FabricanteModel model = new FabricanteModel();
 	ModeloModel modelo = new ModeloModel();
 
     @Override
@@ -23,6 +24,7 @@ public class CadastroModelo extends HttpServlet {
         // Preprocess request: we actually don't need to do any business stuff, so just display JSP.
     	request.setAttribute("views", "cadastro_modelo.xhtml");
         request.getRequestDispatcher("views/index.xhtml").forward(request, response);
+        //model.Seleciona();
     }
 
     @Override
@@ -37,5 +39,7 @@ public class CadastroModelo extends HttpServlet {
         	response.sendRedirect("/WebDev/cadastro-modelo");
         }
     }
+    
+    
 
 }

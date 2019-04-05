@@ -24,20 +24,6 @@ public class LoginModel {
 	
 	ConexaoBD conexao = new ConexaoBD();
 	
-	public void Login() {
-		conexao.conexao();
-		try {		
-			PreparedStatement pst = conexao.con.prepareStatement("SELECT * FROM USUARIOS WHERE");
-			//pst.setString(1,mod.getNome());
-			pst.execute();
-			JOptionPane.showMessageDialog(null, "INSERIDO COM SUCESSO");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, "ERRO AO INSERIR:\n"+e.getMessage());
-		}
-		conexao.desconecta();
-	}
-	
 	public boolean LoginExiste() {
 		conexao.conexao();
 		String count;
