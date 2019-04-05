@@ -12,9 +12,9 @@
 
 		<h:panelGrid columns="2" cellpadding="5">
 
-			<p:outputLabel for="country" value="Fabricante: " />
+			<p:outputLabel for="cod_fabricante" value="Fabricante: " />
 
-			<h:selectOneMenu id="country" value="#{dropdownView.selectedItem}"
+			<h:selectOneMenu id="cod_fabricante" value="#{dropdownView.selectedItem}"
 				style="width:150px">
 				<f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
 				<f:selectItems value="#{dropdownView.availableItems}" />
@@ -23,9 +23,7 @@
 			<p:outputLabel for="modelo" value="Modelo " />
 			<p:inputText id="modelo" type="text" name="modelo" value=""></p:inputText>
 
-			<p class="submit">
-				<p:inputText type="submit" name="commit" value="Cadastrar"></p:inputText>
-			</p>
+				<p class="submit"><p:inputText type="submit" value="Cadastrar"></p:inputText></p>
 
 
 		</h:panelGrid>

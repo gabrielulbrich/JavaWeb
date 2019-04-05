@@ -36,7 +36,5 @@ public class CadastroFabricante extends HttpServlet {
         	response.sendRedirect("/WebDev/cadastro-fabricante");
         }
     }
-
-
-
+    
 }
