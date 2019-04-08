@@ -149,23 +149,22 @@
 			<div class="container-fluid">
 				<h:form>
 					<h:panelGrid columns="2" cellpadding="5">
-						<p:outputLabel for="country" value="Country: " />
 
-						<p:selectOneMenu id="country" value="#{dropdownView.country}"
+						<p:outputLabel for="cod_fabricante" value="Fabricante: " />
+			
+						<h:selectOneMenu id="cod_fabricante" value="#{dropdownView.selectedItem}"
 							style="width:150px">
-							<f:selectItem itemLabel="Select Country" itemValue=""
-								noSelectionOption="true" />
-							<f:selectItems value="#{dropdownView.countries}" />
-							<f:ajax listener="#{dropdownView.onCountryChange}" render="city" />
-						</p:selectOneMenu>
+							<f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+							<f:selectItems value="#{dropdownView.availableItems}" />
+						</h:selectOneMenu>
 
-						<p:outputLabel for="city" value="City: " />
+						<p:outputLabel for="city" value="Modelo: " />
 
-						<p:selectOneMenu id="city" value="#{dropdownView.city}"
+						<p:selectOneMenu id="city" value=""
 							style="width:150px">
 							<f:selectItem itemLabel="Select City" itemValue=""
 								noSelectionOption="true" />
-							<f:selectItems value="#{dropdownView.cities}" />
+							<f:selectItems value="" />
 						</p:selectOneMenu>
 
 						<label>Fabricante:</label>
