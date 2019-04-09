@@ -18,6 +18,11 @@ public class FabricanteModel {
 	private int cod_fabricante;
 	private String fabricante;
 	
+	private int fabricanteId;
+	
+	private int cod_modelo;
+	private String modelo;
+	
 	public Statement stm;
 	public ResultSet rs;
 	
@@ -66,6 +71,30 @@ public class FabricanteModel {
 		}
 	}
 	
+	public List<FabricanteModel> getModelos() {
+		FabricanteModel mod = null;
+		List<FabricanteModel> modelosList = new ArrayList <FabricanteModel>();
+		conexao.conexao();
+		String count;
+		try {		
+			stm = conexao.con.createStatement();
+			rs = stm.executeQuery("SELECT cod_modelo, modelo FROM MODELO as mod	INNER JOIN FABRICANTE as fab ON mod.cod_fabricante = fab.cod_fabricante	WHERE cod_fabricante ="+fabricanteId+";");
+		    while(rs.next()) {
+		    	mod = new FabricanteModel();		    	
+		    	mod.setCod_modelo(rs.getInt("cod_modelo"));
+		    	mod.setModelo(rs.getString("modelo"));
+		    	modelosList.add(mod);
+		    	mod = null;			    
+		    }		    
+		} catch (SQLException e) {
+		    System.out.println("Erro de SQL: "+e);
+		    e.printStackTrace();
+		}finally{
+			conexao.desconecta();
+			return modelosList;
+		}
+	}
+	
 	public String getFabricante() {
 		return fabricante;
 	}
@@ -80,6 +109,30 @@ public class FabricanteModel {
 
 	public void setCod_fabricante(int cod_fabricante) {
 		this.cod_fabricante = cod_fabricante;
+	}
+
+	public int getFabricanteId() {
+		return fabricanteId;
+	}
+
+	public void setFabricanteId(int fabricanteId) {
+		this.fabricanteId = fabricanteId;
+	}
+
+	public int getCod_modelo() {
+		return cod_modelo;
+	}
+
+	public void setCod_modelo(int cod_modelo) {
+		this.cod_modelo = cod_modelo;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
 	}
 	
 }

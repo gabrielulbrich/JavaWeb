@@ -124,11 +124,10 @@
 				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Veiculos</span>
 			</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					<a class="dropdown-item" href="/WebDev/cadastro-veiculo">Cadastrar
-						Veículos</a> <a class="dropdown-item"
-						href="/WebDev/cadastro-fabricante">Cadastrar Fabricante</a> <a
-						class="dropdown-item" href="/WebDev/lista-produto">Listar
-						Veículos</a>
+					<a class="dropdown-item" href="/WebDev/cadastro-veiculo">Cadastrar Veículos</a> 
+					<a class="dropdown-item" href="/WebDev/cadastro-fabricante">Cadastrar Fabricante</a>
+					<a class="dropdown-item" href="/WebDev/cadastro-modelo">Cadastrar Modelo</a>
+					<a class="dropdown-item" href="/WebDev/lista-produto">Listar Veículos</a>
 				</div></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
@@ -152,20 +151,21 @@
 
 						<p:outputLabel for="cod_fabricante" value="Fabricante: " />
 			
-						<h:selectOneMenu id="cod_fabricante" value="#{dropdownView.selectedItem}"
+						<h:selectOneMenu id="cod_fabricante" value="#{dropdownView.selectedFabricante}"
 							style="width:150px">
 							<f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
 							<f:selectItems value="#{dropdownView.availableItems}" />
+							<f:ajax event="change" render="modelo" listener="#{dropdownView.onChange}"  />
 						</h:selectOneMenu>
 
-						<p:outputLabel for="city" value="Modelo: " />
+						<p:outputLabel for="modelo" value="Modelo: " />
 
-						<p:selectOneMenu id="city" value=""
-							style="width:150px">
-							<f:selectItem itemLabel="Select City" itemValue=""
-								noSelectionOption="true" />
-							<f:selectItems value="" />
-						</p:selectOneMenu>
+						<h:selectOneMenu id="modelo" value="#{dropdownView.selectedFabricante}">
+							<f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true" />
+							<f:selectItems value="#{dropdownView.availableModelos}" />
+						</h:selectOneMenu>
+						
+						
 
 						<label>Fabricante:</label>
 						<p:inputText id="fabricante" type="text" name="fabricante"
