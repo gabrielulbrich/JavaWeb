@@ -10,7 +10,7 @@ public class ConexaoBD {
 	public Connection con;
 	public Statement stm;
 	public ResultSet rs;
-	private String caminho = "jdbc:hsqldb:file:/Users/gulbrich/lab/JavaWeb/WebDev/banco/biblioteca";
+	private String caminho = "jdbc:hsqldb:file:C:/workspace/WebDev/banco/biblioteca";
 	private String usuario = "SA";
 	private String senha = "";
 

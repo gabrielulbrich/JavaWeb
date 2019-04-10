@@ -147,42 +147,39 @@
 		<div id="content-wrapper">
 			<div class="container-fluid">
 				<h:form>
+				 	<p:growl id="growl" life="2000" />
+				 	
 					<h:panelGrid columns="2" cellpadding="5">
-
 						<p:outputLabel for="cod_fabricante" value="Fabricante: " />
 			
-						<h:selectOneMenu id="cod_fabricante" value="#{dropdownView.selectedFabricante}"
-							style="width:150px">
-							<f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+						<h:selectOneMenu id="cod_fabricante" value="#{dropdownView.selectedFabricante}" required="true"  style="width:150px">
+							<f:selectItem itemLabel="Selecione Fabricante" itemValue="" noSelectionOption="true" />
 							<f:selectItems value="#{dropdownView.availableItems}" />
 							<f:ajax event="change" render="modelo" listener="#{dropdownView.onChange}"  />
 						</h:selectOneMenu>
 
 						<p:outputLabel for="modelo" value="Modelo: " />
 
-						<h:selectOneMenu id="modelo" value="#{dropdownView.selectedFabricante}">
-							<f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true" />
+						<h:selectOneMenu id="modelo" value="#{dropdownView.selectedModelo}" required="true">
+							<f:selectItem itemLabel="Selecione Modelo" itemValue="" noSelectionOption="true" />
 							<f:selectItems value="#{dropdownView.availableModelos}" />
 						</h:selectOneMenu>
-						
-						
 
-						<label>Fabricante:</label>
-						<p:inputText id="fabricante" type="text" name="fabricante"
-							value=""></p:inputText>
-						<label>Cor:</label>
-						<p:inputText id="cor" type="text" name="cor" value=""></p:inputText>
-						<label>Placa:</label>
-						<p:inputText id="placa" type="text" name="placa" value=""></p:inputText>
-						<label>Descrição:</label>
-						<p:inputText id="descricao" type="text" name="descricao" value=""></p:inputText>
-						<label>Quantidade:</label>
-						<p:inputText id="quantidade" type="text" name="quantidade"
-							value=""></p:inputText>
-						<p class="submit">
-							<p:inputText type="submit" value="Registrar"></p:inputText>
-						</p>
-					</h:panelGrid>
+						<p:outputLabel for="cor" value="Cor: " />
+						<h:inputText id="cor" type="text" name="cor" value="#{dropdownView.cor}" required="true"/>
+						<p:outputLabel for="placa" value="Placa: " />
+						<h:inputText id="placa" type="text" name="placa" value="#{dropdownView.placa}" required="true"/>
+						<p:outputLabel for="descricao" value="Descrição: " />
+						<h:inputText id="descricao" type="text" name="descricao" value="#{dropdownView.descricao}" required="true"/>
+						<p:outputLabel for="quantidade" value="Quantidade: " />
+						<h:inputText id="quantidade" immediate="true" type="text" name="quantidade"  value="#{dropdownView.quantidade}" required="true"/>			
+							</h:panelGrid>
+							<hr/>
+						<h:commandButton action="#{dropdownView.submit}" value="Submit">
+							<f:ajax execute="@form" render="@form" />
+						</h:commandButton>
+						<h:messages globalOnly="true" styleClass="feedback" />
+					
 				</h:form>
 			</div>
 			<!-- /.container-fluid -->
@@ -230,7 +227,14 @@
 		</div>
 	</div>
 
-	<ui:include src="footer.xhtml"></ui:include>
+
+<footer>   
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/sb-admin.min.js"></script>
+
+	<script src="assets/js/script.js"></script>
+</footer>
 
 </h:body>
 

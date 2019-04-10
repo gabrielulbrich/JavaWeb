@@ -34,6 +34,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import models.FabricanteModel;
+import models.VeiculoModel;
 
 @ManagedBean
 @ViewScoped
@@ -41,13 +42,17 @@ public class DropdownView implements Serializable {
 	
 	private String result;
 	//private static final Logger logger = Logger.getLogger(DropdownView.class);
-
+	VeiculoModel model = new VeiculoModel();
     FabricanteModel fab = new FabricanteModel();
     
     List<FabricanteModel> fabricanteLista = fab.getList();   
     List<FabricanteModel> fabricanteModelo;  
     private String selectedFabricante; // +getter +setter
 	private String selectedModelo;
+	private String quantidade;
+	private String cor;
+	private String descricao;
+	private String placa;
 	private List<SelectItem> availableItems;
 	private List<SelectItem> availableModelos;
     
@@ -71,6 +76,36 @@ public class DropdownView implements Serializable {
     		availableModelos.add(new SelectItem(modelo.getCod_modelo(), modelo.getModelo()));
     	}
 
+    }
+    
+    public void submit() {    
+    	
+    	System.out.println(" ok");
+    	
+    	System.out.println(this.selectedFabricante);
+    	System.out.println(this.selectedModelo);
+    	System.out.println(this.getDescricao());
+    	System.out.println(this.getQuantidade());
+    	System.out.println(this.getCor());
+    	System.out.println(this.getPlaca());
+    	
+		
+    	model.setCod_fabricante(this.selectedFabricante);
+    	model.setCod_modelo(this.selectedModelo);
+		model.setDescricao(this.getDescricao());
+		model.setQuantidade(this.getQuantidade());
+		model.setCor(this.getCor());
+		model.setPlaca(this.getPlaca());
+		
+		if (model.CadastrarVeiculo()) {
+	    	FacesContext facesContext = FacesContext.getCurrentInstance();
+			FacesMessage facesMessage = new FacesMessage("Veiculo inserido com sucesso!");
+			facesContext.addMessage(null, facesMessage);
+		} else {
+	    	FacesContext facesContext = FacesContext.getCurrentInstance();
+			FacesMessage facesMessage = new FacesMessage("ERRO!");
+			facesContext.addMessage(null, facesMessage);
+		}
     }
     
 
@@ -97,5 +132,37 @@ public class DropdownView implements Serializable {
 
 	public List<SelectItem> getAvailableModelos() {
 		return availableModelos;
+	}
+	
+	public String getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(String quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 }
