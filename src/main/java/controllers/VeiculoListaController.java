@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/lista-produto")
-public class ListaProduto extends HttpServlet {
+@WebServlet("/lista-veiculo")
+public class VeiculoListaController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Preprocess request: we actually don't need to do any business stuff, so just display JSP.
-    	request.setAttribute("views", "lista_produto.xhtml");
-        request.getRequestDispatcher("views/index.xhtml").forward(request, response);
+    	//request.setAttribute("views", "lista_veiculo.xhtml");
+        request.getRequestDispatcher("views/lista_veiculo.xhtml").forward(request, response);
     }
 
     @Override
