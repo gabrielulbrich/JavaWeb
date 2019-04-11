@@ -38,7 +38,7 @@ import models.VeiculoModel;
 
 @ManagedBean
 @ViewScoped
-public class DropdownView implements Serializable {
+public class VeiculoView implements Serializable {
 	
 	private String result;
 	//private static final Logger logger = Logger.getLogger(DropdownView.class);
@@ -79,17 +79,7 @@ public class DropdownView implements Serializable {
     }
     
     public void submit() {    
-    	
-    	System.out.println(" ok");
-    	
-    	System.out.println(this.selectedFabricante);
-    	System.out.println(this.selectedModelo);
-    	System.out.println(this.getDescricao());
-    	System.out.println(this.getQuantidade());
-    	System.out.println(this.getCor());
-    	System.out.println(this.getPlaca());
-    	
-		
+
     	model.setCod_fabricante(this.selectedFabricante);
     	model.setCod_modelo(this.selectedModelo);
 		model.setDescricao(this.getDescricao());
@@ -107,8 +97,6 @@ public class DropdownView implements Serializable {
 			facesContext.addMessage(null, facesMessage);
 		}
     }
-    
-
 
 	public List<SelectItem> getAvailableItems() {
 		return availableItems;

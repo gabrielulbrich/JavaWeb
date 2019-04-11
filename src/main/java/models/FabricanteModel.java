@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import controllers.Login;
-import views.DropdownView;
+import views.VeiculoView;
 import controllers.CadastroFabricante;
 import controllers.ConexaoBD;
 

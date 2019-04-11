@@ -152,30 +152,30 @@
 					<h:panelGrid columns="2" cellpadding="5">
 						<p:outputLabel for="cod_fabricante" value="Fabricante: " />
 			
-						<h:selectOneMenu id="cod_fabricante" value="#{dropdownView.selectedFabricante}" required="true"  style="width:150px">
+						<h:selectOneMenu id="cod_fabricante" value="#{veiculoView.selectedFabricante}" required="true"  style="width:150px">
 							<f:selectItem itemLabel="Selecione Fabricante" itemValue="" noSelectionOption="true" />
-							<f:selectItems value="#{dropdownView.availableItems}" />
-							<f:ajax event="change" render="modelo" listener="#{dropdownView.onChange}"  />
+							<f:selectItems value="#{veiculoView.availableItems}" />
+							<f:ajax event="change" render="modelo" listener="#{veiculoView.onChange}"  />
 						</h:selectOneMenu>
 
 						<p:outputLabel for="modelo" value="Modelo: " />
 
-						<h:selectOneMenu id="modelo" value="#{dropdownView.selectedModelo}" required="true">
+						<h:selectOneMenu id="modelo" value="#{veiculoView.selectedModelo}" required="true">
 							<f:selectItem itemLabel="Selecione Modelo" itemValue="" noSelectionOption="true" />
-							<f:selectItems value="#{dropdownView.availableModelos}" />
+							<f:selectItems value="#{veiculoView.availableModelos}" />
 						</h:selectOneMenu>
 
 						<p:outputLabel for="cor" value="Cor: " />
-						<h:inputText id="cor" type="text" name="cor" value="#{dropdownView.cor}" required="true"/>
+						<h:inputText id="cor" type="text" name="cor" value="#{veiculoView.cor}" required="true"/>
 						<p:outputLabel for="placa" value="Placa: " />
-						<h:inputText id="placa" type="text" name="placa" value="#{dropdownView.placa}" required="true"/>
+						<h:inputText id="placa" type="text" name="placa" value="#{veiculoView.placa}" required="true"/>
 						<p:outputLabel for="descricao" value="Descrição: " />
-						<h:inputText id="descricao" type="text" name="descricao" value="#{dropdownView.descricao}" required="true"/>
+						<h:inputText id="descricao" type="text" name="descricao" value="#{veiculoView.descricao}" required="true"/>
 						<p:outputLabel for="quantidade" value="Quantidade: " />
-						<h:inputText id="quantidade" immediate="true" type="text" name="quantidade"  value="#{dropdownView.quantidade}" required="true"/>			
+						<h:inputText id="quantidade" immediate="true" type="text" name="quantidade"  value="#{veiculoView.quantidade}" required="true"/>			
 							</h:panelGrid>
 							<hr/>
-						<h:commandButton action="#{dropdownView.submit}" value="Submit">
+						<h:commandButton action="#{veiculoView.submit}" value="Submit">
 							<f:ajax execute="@form" render="@form" />
 						</h:commandButton>
 						<h:messages globalOnly="true" styleClass="feedback" />
