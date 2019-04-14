@@ -51,6 +51,11 @@ public class VeiculoModel {
 		return false;
 	}
 	
+	public boolean DeletarVeiculo() {
+		
+		return false;
+	}
+	
 	public String getDescricao() {
 		return descricao;
 	}

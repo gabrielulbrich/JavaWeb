@@ -15,6 +15,7 @@
  */
 package views;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +63,7 @@ public class VeiculoListaView implements Serializable {
     
     public ArrayList veiculosList() {
     	System.out.println("selecionou");
+    	veiculosListFromDB = VeiculoListaModel.getStudentsListFromDB();
         return veiculosListFromDB;
     }
      
@@ -77,9 +79,16 @@ public class VeiculoListaView implements Serializable {
 //        return VeiculoListaModel.updateStudentDetailsInDB(updateStudentObj);
 //    }
 //     
-//    public String deleteStudentRecord(int studentId) {
-//        return VeiculoListaModel.deleteStudentRecordInDB(studentId);
-//    }
+    public void deletarVeiculo(int cod_veiculo) {
+        VeiculoListaModel.deletarVeiculo(cod_veiculo);
+    	FacesContext facesContext = FacesContext.getCurrentInstance();
+		FacesMessage facesMessage = new FacesMessage("Veiculo deletado com sucesso!");
+		facesContext.addMessage(null, facesMessage);
+    }
+    
+    public String editarVeiculo(int cod_veiculo) {
+    	return VeiculoListaModel.editStudentRecordInDB(cod_veiculo);
+    }
     
 	public String getFabricante() {
 		return fabricante;

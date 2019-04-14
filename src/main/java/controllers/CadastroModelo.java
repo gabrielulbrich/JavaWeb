@@ -25,11 +25,15 @@ public class CadastroModelo extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Preprocess request: we actually don't need to do any business stuff, so just
-		// display JSP.
-		request.setAttribute("views", "cadastro_modelo.xhtml");
-		request.getRequestDispatcher("views/index.xhtml").forward(request, response);
-		// model.Seleciona();
+		
+    	HttpSession session = request.getSession();
+    	boolean logado = Boolean.valueOf(String.valueOf(session.getAttribute("logado")));
+    	if(logado == true) {
+    		request.setAttribute("views", "cadastro_modelo.xhtml");
+    		request.getRequestDispatcher("views/index.xhtml").forward(request, response);
+    	}else {
+    		request.getRequestDispatcher("views/login.xhtml").forward(request, response);
+    	}
 	}
 
 	@Override

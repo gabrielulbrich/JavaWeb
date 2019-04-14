@@ -48,7 +48,9 @@ public class VeiculoView implements Serializable {
     List<FabricanteModel> fabricanteLista = fab.getList();   
     List<FabricanteModel> fabricanteModelo;  
     private String selectedFabricante; // +getter +setter
-	private String selectedModelo;
+	private String selectedModelo;	
+	private String cod_fabricante;
+	private String cod_modelo;
 	private String quantidade;
 	private String cor;
 	private String descricao;
@@ -75,7 +77,6 @@ public class VeiculoView implements Serializable {
     	for(FabricanteModel modelo: fabricanteModelo){
     		availableModelos.add(new SelectItem(modelo.getCod_modelo(), modelo.getModelo()));
     	}
-
     }
     
     public void submit() {    
@@ -152,5 +153,21 @@ public class VeiculoView implements Serializable {
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
+	}
+
+	public String getCod_fabricante() {
+		return cod_fabricante;
+	}
+
+	public void setCod_fabricante(String cod_fabricante) {
+		this.cod_fabricante = cod_fabricante;
+	}
+
+	public String getCod_modelo() {
+		return cod_modelo;
+	}
+
+	public void setCod_modelo(String cod_modelo) {
+		this.cod_modelo = cod_modelo;
 	}
 }

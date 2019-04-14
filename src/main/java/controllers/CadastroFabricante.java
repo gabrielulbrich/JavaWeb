@@ -19,9 +19,15 @@ public class CadastroFabricante extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Preprocess request: we actually don't need to do any business stuff, so just display JSP.
-    	request.setAttribute("views", "cadastro_fabricante.xhtml");
-        request.getRequestDispatcher("views/index.xhtml").forward(request, response);
+        // Preprocess request: we actually don't need to do any business stuff, so just display JSP.      
+    	HttpSession session = request.getSession();
+    	boolean logado = Boolean.valueOf(String.valueOf(session.getAttribute("logado")));
+    	if(logado == true) {
+    		request.setAttribute("views", "cadastro_fabricante.xhtml");
+    		request.getRequestDispatcher("views/index.xhtml").forward(request, response);
+    	}else {
+    		request.getRequestDispatcher("views/login.xhtml").forward(request, response);
+    	}
     }
 
     @Override

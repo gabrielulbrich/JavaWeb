@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Map;
 
+import javax.faces.context.FacesContext;
 import javax.swing.JOptionPane;
 
 import controllers.Login;
@@ -25,6 +27,7 @@ public class VeiculoListaModel {
 	//public ResultSet rs;
 	
 	public static ResultSet resultSetVeiculos;
+	public static ResultSet resultSetVeiculosEdit;
 	
 	
 	
@@ -87,6 +90,53 @@ public class VeiculoListaModel {
 	    } 
 	    return veiculosList;
 	}
+	
+	public static void deletarVeiculo(int cod_veiculo) {
+		Statement stm;
+	    ArrayList veiculosList = new ArrayList();  
+	    ConexaoBD conexao = new ConexaoBD();
+	    conexao.conexao();
+	    try {	
+			stm = conexao.con.createStatement();
+			stm.executeQuery("DELETE FROM VEICULO WHERE cod_veiculo='"+cod_veiculo+"';");
+	    conexao.desconecta();
+	    }catch(Exception sqlException) {
+	        sqlException.printStackTrace();
+	    } 
+	}
+	
+	
+   public static String editStudentRecordInDB(int cod_veiculo) {
+	    ConexaoBD conexao = new ConexaoBD();
+	    Statement stm = null;
+        VeiculoListaView edit = null;
+        System.out.println("editStudentRecordInDB() : Veiculo Id: " + cod_veiculo);
+
+        Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        conexao.conexao();
+        try {
+			stm = conexao.con.createStatement();
+			resultSetVeiculosEdit = stm.executeQuery("SELECT cod_veiculo, descricao, quantidade, placa, cor, cod_modelo, cod_fabricante FROM VEICULO WHERE cod_veiculo="+cod_veiculo+";");
+			
+            if(resultSetVeiculosEdit != null) {
+            	resultSetVeiculosEdit.next();
+                edit = new VeiculoListaView(); 
+                //edit.setId(resultSetVeiculosEdit.getInt("student_id"));
+                edit.setCod_modelo(resultSetVeiculosEdit.getInt("cod_modelo"));
+                edit.setCod_fabricante(resultSetVeiculosEdit.getInt("cod_fabricante"));
+                edit.setDescricao(resultSetVeiculosEdit.getString("descricao"));
+                edit.setPlaca(resultSetVeiculosEdit.getString("placa"));
+                edit.setQuantidade(resultSetVeiculosEdit.getString("quantidade")); 
+                edit.setCor(resultSetVeiculosEdit.getString("cor")); 
+            }
+            sessionMapObj.put("editRecordObj", edit);
+            conexao.desconecta();
+        } catch(Exception sqlException) {
+            sqlException.printStackTrace();
+        }
+        return "/views/editar_veiculo.xhtml?faces-redirect=true";
+    }
+	
 	
 	public String getDescricao() {
 		return descricao;
